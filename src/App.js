@@ -11,6 +11,9 @@ function App() {
           alt=''
         /> 
       </div>
+      <h1>Hi vanillatortilla weelcome to ig clone</h1>
+      <Post />
+      <Post />
       <Post />
     </div>
   );
