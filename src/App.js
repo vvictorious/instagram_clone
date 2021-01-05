@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './App.css';
 import Post from './Post'
-import { db } from './firebase'
+import { db, auth } from './firebase'
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import { Button, Input } from '@material-ui/core';
@@ -49,7 +49,10 @@ const App = () => {
   })
 
   const signUp = e => {
-
+    e.preventDefault()
+    auth
+    .createUserWithEmailAndPassword(email, password)
+    .catch((error) => alert(error.message));
   }
   
   return (
@@ -71,21 +74,21 @@ const App = () => {
               placeholder='username'
               type='text'
               value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={e => setUsername(e.target.value)}
             />            
             <Input
               placeholder='email'
               type='text'
               value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              onChange={e => setEmail(e.target.value)}
             />
             <Input
               placeholder='password'
               type='password'
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
             />           
-            <Button onSubmit={signUp}>Sign Up</Button>
+            <Button type='submit' onClick={signUp}>Sign Up</Button>
           </form>
         </div>
       </Modal> 
