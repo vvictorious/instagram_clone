@@ -59,12 +59,14 @@ const App = () => {
         onClose={ () => setOpen(false)}
       >
         <div style={modalStyle} className={classes.paper}>
-          <center>
-            <img 
-              className='app__headerImage'
-              src='https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png'
-              alt=''
-            />
+          <form className='app__signup'>
+            <center>
+              <img 
+                className='app__headerImage'
+                src='https://www.instagram.com/static/images/web/mobile_nav_type_logo.png/735145cfe0a4.png'
+                alt=''
+              />
+            </center>
             <Input
               placeholder='username'
               type='text'
@@ -82,8 +84,9 @@ const App = () => {
               type='password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-            />            
-          </center>
+            />           
+            <Button onSubmit={signUp}>Sign Up</Button>
+          </form>
         </div>
       </Modal> 
 
@@ -97,7 +100,7 @@ const App = () => {
 
       <Button onClick={() => setOpen(true)}>Sign Up</Button>
 
-      <h1>Hi vanillatortilla weelcome to ig clone</h1>
+      <h1>Hi vanillatortilla welcome to ig clone</h1>
         {posts.map(({post, id}) => (
           <Post key={id} username={post.username} caption={post.caption} imageURL={post.imageURL} />
         ))}
