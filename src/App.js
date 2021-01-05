@@ -3,15 +3,18 @@ import './App.css';
 import Post from './Post'
 import { db } from './firebase'
 
-function App() {
+const App = () => {
 
   const [posts, setPosts] = useState([])
 
   useEffect( () => {
     db.collection('posts').onSnapshot(snapshot => {
-      setPosts(snapshot.docs.map(doc => doc.data()))
+      setPosts(snapshot.docs.map(doc => ({
+        id: doc.id,
+        post: doc.data()
+      })))
     })
-  }, [])
+  })
 
   return (
     <div className="app">
@@ -23,8 +26,8 @@ function App() {
         /> 
       </div>
       <h1>Hi vanillatortilla weelcome to ig clone</h1>
-        {posts.map(post => (
-          <Post username={post.username} caption={post.caption} imageURL={post.imageURL} />
+        {posts.map(({post, id}) => (
+          <Post key={id} username={post.username} caption={post.caption} imageURL={post.imageURL} />
         ))}
     </div>
   );
